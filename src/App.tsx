@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import defaultDataset from "./dataset.json";
+import "./assets/styles/style.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+type AppProps = {
+
+};
+
+type Chat = {
+  answers: string[],
+  chats: string[],
+  currentId: string,
+  dataset: Dataset,
+  open: boolean
+};
+
+type Dataset = {
+
+};
+
+class App extends React.Component<AppProps, Chat> {
+  constructor(props: AppProps) {
+    super(props);
+    this.state = {
+      answers: [],
+      chats: [],
+      currentId: "init",
+      dataset: defaultDataset,
+      open: false
+    }
+  }
+  render() {
+    return (
+      <section className="c-section">
+        <div className="c-box">
+          {this.state.currentId}
+        </div>
+      </section>
+    );
+  }
 }
 
 export default App;
