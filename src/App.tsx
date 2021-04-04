@@ -1,6 +1,7 @@
 import React from 'react';
 import defaultDataset from "./dataset.json";
 import "./assets/styles/style.css";
+import { AnswersList } from "./components/index";
 
 type AppProps = {
 
