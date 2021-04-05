@@ -15,9 +15,19 @@ type Chat = {
   open: boolean
 };
 
-type Dataset = {
+export type Dataset = {
+    [key: string]: Data
+  };
 
-};
+  type Data = {
+  answers: Answers[],
+  question: string
+  };
+  
+  type Answers = {
+    content: string,
+    nextId: string
+  };
 
 class App extends React.Component<AppProps, Chat> {
   constructor(props: AppProps) {
@@ -30,6 +40,20 @@ class App extends React.Component<AppProps, Chat> {
       open: false
     }
   }
+
+  initAnswer = () => {
+    const initDataset = this.state.dataset(this.state.currentId);
+    const initAnswers = initDataset.answers;
+
+    this.setState({
+      answers: initAnswers
+    });
+  };
+
+  componentDidMount() {
+    this.initAnswer();
+  }
+
   render() {
     return (
       <section className="c-section">
