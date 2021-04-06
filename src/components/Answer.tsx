@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Answer = (props) => {
+const Answer = (props: {content: string}) => {
   // const classes = useStyles();
 
   return (

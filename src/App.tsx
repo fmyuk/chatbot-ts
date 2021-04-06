@@ -8,26 +8,26 @@ type AppProps = {
 };
 
 type Chat = {
-  answers: string[],
+  answers: Answers[],
   chats: string[],
   currentId: string,
   dataset: Dataset,
   open: boolean
 };
 
-export type Dataset = {
-    [key: string]: Data
-  };
+type Dataset = {
+  [key: string]: Data
+};
 
-  type Data = {
+type Data = {
   answers: Answers[],
   question: string
-  };
+};
   
-  type Answers = {
-    content: string,
-    nextId: string
-  };
+export type Answers = {
+  content: string,
+  nextId: string
+};
 
 class App extends React.Component<AppProps, Chat> {
   constructor(props: AppProps) {
@@ -42,7 +42,7 @@ class App extends React.Component<AppProps, Chat> {
   }
 
   initAnswer = () => {
-    const initDataset = this.state.dataset(this.state.currentId);
+    const initDataset = this.state.dataset[this.state.currentId];
     const initAnswers = initDataset.answers;
 
     this.setState({
@@ -58,7 +58,7 @@ class App extends React.Component<AppProps, Chat> {
     return (
       <section className="c-section">
         <div className="c-box">
-          {this.state.currentId}
+          <AnswersList answers={this.state.answers} />
         </div>
       </section>
     );
