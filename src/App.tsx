@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultDataset from "./dataset.json";
 import "./assets/styles/style.css";
-import { AnswersList } from "./components/index";
+import { AnswersList, Chats } from "./components/index";
 
 type AppProps = {
 
@@ -9,7 +9,7 @@ type AppProps = {
 
 type Chat = {
   answers: Answers[],
-  chats: string[],
+  chats: ChatType[],
   currentId: string,
   dataset: Dataset,
   open: boolean
@@ -27,6 +27,11 @@ type Data = {
 export type Answers = {
   content: string,
   nextId: string
+};
+
+export type ChatType = {
+  text: string,
+  type: string
 };
 
 class App extends React.Component<AppProps, Chat> {
@@ -50,6 +55,21 @@ class App extends React.Component<AppProps, Chat> {
     });
   };
 
+  initChats = () => {
+    const initDataset = this.state.dataset[this.state.currentId];
+    const chat = {
+      text: initDataset.question,
+      type: "question"
+    }
+
+    const chats = this.state.chats;
+    chats.push(chat);
+
+    this.setState({
+      chats: chats
+    });
+  };
+
   componentDidMount() {
     this.initAnswer();
   }
@@ -58,6 +78,7 @@ class App extends React.Component<AppProps, Chat> {
     return (
       <section className="c-section">
         <div className="c-box">
+          <Chats chats={this.state.chats} />
           <AnswersList answers={this.state.answers} />
         </div>
       </section>
