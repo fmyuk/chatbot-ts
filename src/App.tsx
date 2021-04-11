@@ -46,6 +46,40 @@ class App extends React.Component<AppProps, Chat> {
     }
   }
 
+  displayNextQuestion = (nextQuestionId: string) => {
+    const chats = this.state.chats;
+    chats.push({
+      text: this.state.dataset[nextQuestionId].question,
+      type: "question"
+    });
+
+    this.setState = ({
+      answers: this.state.dataset[nextQuestionId].answers,
+      chats: chats,
+      currentId: nextQuestionId
+    });
+  }
+
+  selectAnswer = (selectedAnswer: string, nextQuestionId: string) => {
+    switch (true) {
+      case (nextQuestionId === "init"):
+        break;
+      default:
+        const chat = {
+          text: selectedAnswer,
+          type: "answer"
+        }
+
+        const chats = this.state.chats;
+        chats.push(chat);
+
+        this.setState({
+          chats: chats
+        });
+        break;
+    }
+  }
+
   initAnswer = () => {
     const initDataset = this.state.dataset[this.state.currentId];
     const initAnswers = initDataset.answers;
