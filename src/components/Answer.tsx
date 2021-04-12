@@ -10,11 +10,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Answer = (props: {content: string}) => {
+type AnswerProps = {
+  content: string,
+  nextId: string,
+  select: (selectedAnswer: string, nextQuestionId: string) => void
+};
+
+const Answer = (props: AnswerProps) => {
   // const classes = useStyles();
 
   return (
-    <Button variant="contained" color="primary">
+    <Button variant="contained" color="primary" onClick={() => props.select(props.content, props.nextId)}>
       {props.content}
     </Button>
   );

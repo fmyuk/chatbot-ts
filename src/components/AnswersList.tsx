@@ -2,11 +2,11 @@ import React from "react";
 import { Answer } from "./index";
 import {Answers} from "../App";
 
-const AnswersList = (props: { answers: Answers[] }) => {
+const AnswersList = (props: { answers: Answers[], select: (selectedAnswer: string, nextQuestionId: string) => void }) => {
   return (
     <div className="c-grid__answer">
       {props.answers.map((value, index) => {
-        return <Answer content={value.content} key={index.toString()} />
+        return <Answer content={value.content} nextId={value.nextId} key={index.toString()} select={props.select} />
       })}
     </div>
   );

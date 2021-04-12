@@ -19,7 +19,7 @@ const Chat = (props: ChatType) => {
             <Avatar alt="icon" src={NoProfile} />
         )}
       </ListItemAvatar>
-      <div className="p-chat__bubble">Dummy Text</div>
+      <div className="p-chat__bubble">{props.text}</div>
     </ListItem>
   );
 }
