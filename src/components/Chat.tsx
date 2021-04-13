@@ -4,7 +4,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import { ChatType } from "../App";
 import NoProfile from "../assets/img/no-profile.png";
-import Torahack from "../assets/img/no-profile.png";
+import Torahack from "../assets/img/torahack.png";
 
 const Chat = (props: ChatType) => {
   const isQuestion = (props.type === "question");
